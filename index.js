@@ -1,3 +1,20 @@
+// My Console
+console.log("%c拾皓 ฅ՞•ﻌ•՞ฅ", "color:white;font-weight:bold;text-shadow:10px 5px 5px gray;font-size:6em;padding:10px 30px;".concat("background: linear-gradient(to right top,oklab(58.2% -0.04 -0.21),oklab(58.2% -0.376 -0.21));"));
+console.log("个人博客 https://blog.shihao.us.kg/");
+
+console.log('Press `help()` to get help.');
+window.help = function() {
+    console.log('`add(a,b)` to add');
+    console.log('`minus(a,b)` to minus');
+};
+
+window.add = function(a,b) {
+    return a+b;
+}
+window.minus = function(a,b) {
+    return a-b;
+}
+
 // `h1` Tag Show
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('h1').forEach((h1, i) => {
