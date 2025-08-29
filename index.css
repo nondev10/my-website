@@ -158,6 +158,10 @@ h1 {margin-top: 1rem;}
     background: none;
     transition: none;
 }
+.menu-block-github {transition: all 0.4s 0s, background 0.2s, color 0.2s;}
+.menu-block-zhihu {transition: all 0.4s 0.08s, background 0.2s, color 0.2s;}
+.menu-block-email {transition: all 0.4s 0.16s, background 0.2s, color 0.2s;}
+.menu-block-blog {transition: all 0.4s 0.24s, background 0.2s, color 0.2s;}
 .menu-block {
     background: rgba(24,24,24,0.92) !important;
     opacity: 0;
