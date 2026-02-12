@@ -834,8 +834,9 @@ body::before {
     }
     
     .title-content,
-    .text-content { 
-        padding: 0 0.5rem; 
+    .text-content {
+        margin: 0 auto;
+        padding: 0 var(--content-margin);
     }
     
     .about, .resume { 
