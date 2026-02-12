@@ -9,11 +9,11 @@ window.help = function() {
     console.log('`minus(a,b)` to minus');
 };
 
-window.add = function(a, b) {
+window.add = (a, b) => {
     return a + b;
 };
 
-window.minus = function(a, b) {
+window.minus = (a, b) => {
     return a - b;
 };
 
@@ -21,13 +21,13 @@ window.minus = function(a, b) {
 window.addEventListener('DOMContentLoaded', () => {
     // 标题动画
     document.querySelectorAll('.main-title').forEach((title, i) => {
-        title.style.opacity = '0';
+        title.style.opacity = 0;
         title.style.transition = 'opacity 0.8s, transform 0.8s';
-        
+
         setTimeout(() => {
-            title.style.opacity = '1';
-            title.style.transform = 'translateY(0)';
-        }, i * 1000);
+            title.style.opacity = 1;
+            title.style.transform = 'translateY(0)'
+        }, i * 800);
     });
     
     // 初始化所有功能
@@ -101,8 +101,8 @@ const updateCopyright = () => {
     if (copyrightElement) {
         copyrightElement.textContent = 
             currentYear > startYear 
-                ? `${startYear}-${currentYear} © Copyright ShiHao`
-                : `${startYear} © Copyright ShiHao`;
+                ? `${startYear}-${currentYear} © Copyright IOfficial`
+                : `${startYear} © Copyright IOfficial`;
     }
 };
 
@@ -374,16 +374,13 @@ const initContactForm = () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
-            
-            const subject = `来自 ${name} 的消息`;
-            const body = `姓名: ${name}\n邮箱: ${email}\n\n消息:\n${message}`;
+
+            const body = `${message}`;
             const mailtoLink = `mailto:hi@sayhow.us.kg?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             
             window.location.href = mailtoLink;
-            contactForm.reset();
             alert('邮件客户端已打开，请发送您的消息。');
         });
     }
