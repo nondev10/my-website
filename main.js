@@ -10,6 +10,9 @@ window.help = function() {
 };
 
 window.add = (a, b) => {
+    if (a == 'get' & b == 'loss') {
+        return 0;
+    };
     return a + b;
 };
 
@@ -101,8 +104,8 @@ const updateCopyright = () => {
     if (copyrightElement) {
         copyrightElement.textContent = 
             currentYear > startYear 
-                ? `${startYear}-${currentYear} © Copyright IOfficial`
-                : `${startYear} © Copyright IOfficial`;
+                ? `© ${startYear}-${currentYear} Shihao. All Rights Reserved.`
+                : `© ${startYear} Shihao. All Rights Reserved.`;
     }
 };
 
