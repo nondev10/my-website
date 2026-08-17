@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Legacy / old versions
+.legacy/
+
+# IDE
+.vscode/
+.idea/
+
+# Dependencies (if any)
+node_modules/

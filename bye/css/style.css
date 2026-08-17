@@ -1,0 +1,384 @@
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: #1a1a1a;
+  color: #d0d0d0;
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: rgba(26,26,26,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.nav a {
+  padding: 12px 24px;
+  color: #888;
+  transition: color 0.2s;
+}
+.nav a:hover { color: #e0e0e0; }
+
+/* ============================================================
+   Large Countdown Banner (post-nav, pre-content)
+   ============================================================ */
+.countdown-banner {
+  margin-top: 41px; /* nav height */
+  background: #0a0a0a;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 32px 24px;
+  text-align: center;
+}
+.countdown-label {
+  font-size: 2.4rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.countdown-big {
+  font-family: "Courier New", monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  letter-spacing: 0.05em;
+}
+.countdown-big .unit {
+  font-size: 1.2rem;
+  color: #888;
+  font-weight: 400;
+  margin: 0 2px;
+}
+.countdown-big .num { color: #fff; }
+.countdown-big .big { font-size: 3rem; }
+
+/* ============================================================
+   Section Base — alternating dark zones, no <hr> dividers
+   ============================================================ */
+.zone-dark   { background: #1a1a1a; }
+.zone-darker { background: #141414; }
+.zone-darkest { background: #0a0a0a; }
+
+section {
+  padding: 80px 24px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #555;
+  letter-spacing: 0.05em;
+  color: #e0e0e0;
+}
+
+/* ============================================================
+   Intro / 引言
+   ============================================================ */
+#intro { margin-top: 0; }
+.intro-para {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  line-height: 2;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.intro-note {
+  margin-top: 20px;
+  color: #e0e0e0;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+/* ============================================================
+   Gallery / 照相馆
+   ============================================================ */
+.gallery-item {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+.gallery-item:nth-child(even) { flex-direction: row-reverse; }
+.gallery-item img {
+  width: 320px;
+  height: 210px;
+  object-fit: cover;
+  border: 1px solid #444;
+  filter: grayscale(100%);
+  transition: filter 0.4s, box-shadow 0.4s;
+  flex-shrink: 0;
+}
+.gallery-item:hover img { filter: grayscale(0%); box-shadow: 0 0 20px rgba(255,255,255,0.08); }
+.gallery-caption {
+  flex: 1;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.gallery-item:hover .gallery-caption {
+  color: #e0e0e0;
+  text-shadow: 0 0 12px rgba(255,255,255,0.06);
+}
+.gallery-caption h3 { font-size: 1.2rem; margin-bottom: 8px; transition: color 0.3s; }
+.gallery-item:hover .gallery-caption h3 { color: #fff; }
+.gallery-caption p { font-size: 0.95rem; color: #999; line-height: 1.7; transition: color 0.3s; }
+.gallery-item:hover .gallery-caption p { color: #bbb; }
+
+/* ============================================================
+   Message Board / 留言板 (弹幕)
+   ============================================================ */
+.board-container {
+  position: relative;
+  min-height: 200px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid #444;
+  padding: 16px;
+  background: #111;
+}
+.bullet {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  color: #ccc;
+  animation: floatLeft linear infinite;
+  pointer-events: none;
+  left: 100%;
+}
+@keyframes floatLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - 120vw)); }
+}
+.board-input-row { display: flex; gap: 8px; align-items: center; }
+.board-input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #444;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.board-input-row input:focus { border-color: #888; }
+.board-input-row button {
+  padding: 10px 18px;
+  background: #111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+.board-input-row button:hover { background: #333; }
+
+/* ============================================================
+   Modal
+   ============================================================ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: #1a1a1a;
+  padding: 32px;
+  max-width: 420px;
+  width: 90%;
+  border: 2px solid #555;
+  color: #e0e0e0;
+}
+.modal h3 { margin-bottom: 20px; font-size: 1.1rem; }
+.modal label {
+  display: block;
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+.modal input, .modal textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #444;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  outline: none;
+}
+.modal input:focus, .modal textarea:focus { border-color: #888; }
+.modal textarea { resize: vertical; min-height: 60px; }
+.modal-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+.modal-btns button {
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid #555;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.modal-btns button.primary {
+  background: #e0e0e0;
+  color: #1a1a1a;
+  border-color: #e0e0e0;
+}
+.modal-btns button.primary:hover { background: #fff; }
+
+/* ============================================================
+   Terminal / 回忆终端 — xterm.js Windows CMD
+   ============================================================ */
+#terminal {
+  background: #0a0a0a;
+  max-width: 100%;
+  padding: 80px 24px 60px;
+}
+#terminal .section-title {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  border-bottom-color: #333;
+}
+.terminal-shell-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.terminal-shell {
+  border: 1px solid #333;
+  background: #0c0c0c;
+}
+.terminal-shell .xterm {
+  font-family: "Consolas", "Lucida Console", "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 12px 16px;
+  background: #0c0c0c !important;
+}
+.terminal-shell .xterm-cursor {
+  background: #cccccc !important;
+}
+
+/* ============================================================
+   Thanks / 致谢
+   ============================================================ */
+#thanks { text-align: left; }
+.thanks-intro {
+  font-size: 0.95rem;
+  color: #888;
+  margin-bottom: 24px;
+}
+.thanks-list {
+  list-style: none;
+  counter-reset: thanks-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 40px;
+  border-top: 1px solid #444;
+}
+.thanks-list li {
+  counter-increment: thanks-counter;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid #2a2a2a;
+  font-size: 1rem;
+  color: #ccc;
+  transition: background 0.15s;
+}
+.thanks-list li::before {
+  content: counter(thanks-counter, decimal-leading-zero) ".";
+  margin-right: 16px;
+  color: #888;
+  font-family: "Courier New", monospace;
+  min-width: 32px;
+  text-align: right;
+}
+.thanks-list li:hover { background: #222; }
+.thanks-note {
+  font-size: 0.95rem;
+  color: #888;
+  max-width: 600px;
+  line-height: 1.9;
+  margin-bottom: 48px;
+  padding-left: 4px;
+}
+.random-quote {
+  font-size: 2.2rem;
+  line-height: 2;
+  color: #e0e0e0;
+  max-width: 700px;
+  text-align: right;
+  font-style: normal;
+  white-space: pre-line;
+  margin-left: auto;
+}
+.random-quote .source {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 8px;
+  font-style: normal;
+  text-align: right;
+}
+
+/* ============================================================
+   箴言 section
+   ============================================================ */
+.quote-section {
+  max-width: 100%;
+  margin: 0;
+  padding: 64px 40px 64px 0;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  background: #0a0a0a;
+  text-align: center;
+  padding: 40px 24px;
+  font-size: 0.75rem;
+  color: #555;
+  margin-top: 0;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 700px) {
+  .gallery-item, .gallery-item:nth-child(even) { flex-direction: column; }
+  .gallery-item img { width: 100%; height: auto; }
+  .nav { flex-wrap: wrap; }
+  .nav a { padding: 10px 14px; font-size: 0.7rem; }
+  .countdown-big { font-size: 1.6rem; }
+  .random-quote { font-size: 1.4rem; }
+}

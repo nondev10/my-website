@@ -1,5 +1,182 @@
-<html>
-    <body>
-        这是一个测试，为纪念网站的占位。
-    </body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farewell · All of the Past</title>
+
+  <!-- xterm.js for real terminal emulation -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="nav">
+  <a href="#intro">引言</a>
+  <a href="#gallery">照相馆</a>
+  <a href="#board">留言板</a>
+  <a href="#terminal">回忆终端</a>
+  <a href="#thanks">致谢</a>
+</nav>
+
+<!-- ===== Large Countdown (after nav, before content) ===== -->
+<div class="countdown-banner" id="countdown-banner">
+  <div class="countdown-label" id="cd-label">距离考试结束还有</div>
+  <div class="countdown-big" id="cd-display">
+    <span class="num" id="cd-days">--</span><span class="unit">天</span>
+    <span class="num" id="cd-hours">--</span><span class="unit">时</span>
+    <span class="num" id="cd-mins">--</span><span class="unit">分</span>
+    <span class="num" id="cd-secs">--</span><span class="unit">秒</span>
+  </div>
+</div>
+
+<!-- ===== 引言 ===== -->
+<div class="zone-dark">
+<section id="intro">
+  <div class="section-title">引言</div>
+  <p class="intro-para">6 月 23 日下午，中考结束。</p>
+  <p class="intro-para">6 月 26 日，志愿填报开始。</p>
+  <p class="intro-para">7 月末至 8 月初，各中学开始报名。</p>
+  <!-- <p class="intro-note" style="margin-top:24px;">
+    有时我幻想能搭上一辆永不停歇的列车，<br>
+    看风景一寸寸滑过，任时光匆匆流逝。<br>
+    可列车总是会停的，而我又该如何面对列车下的世界？
+  </p> -->
+</section>
+</div>
+
+<!-- ===== 照相馆 ===== -->
+<div class="zone-darker">
+<section id="gallery">
+  <div class="section-title">照相馆</div>
+
+  <div class="gallery-item">
+    <img src="assets/images/学校的走廊.jpg" alt="学校的走廊" />
+    <div class="gallery-caption">
+      <h3>学校的走廊</h3>
+      <p>走过无数次的走廊，今天起就不再重复了。阳光从窗棂斜斜地照进来，尘埃在光里浮沉，像极了那些说不清道不明的日子。</p>
+    </div>
+  </div>
+
+  <div class="gallery-item">
+    <img src="assets/images/楼梯道的窗户.jpg" alt="楼梯道的窗户" />
+    <div class="gallery-caption">
+      <h3>楼梯道的窗户</h3>
+      <p>每次上楼都要经过这里。窗外的天总是很蓝，蓝得像一场不会醒来的梦。我们曾在此驻足，望着远方，想象着未来。</p>
+    </div>
+  </div>
+
+  <div class="gallery-item">
+    <img src="assets/images/同学留的便签纸.jpg" alt="同学留的便签纸" />
+    <div class="gallery-caption">
+      <h3>同学留的便签纸</h3>
+      <p>那些歪歪扭扭的字迹，藏在课本里、桌角上、笔袋中。每一张都是一句来不及当面说的话，是青春最诚实的模样。</p>
+    </div>
+  </div>
+
+  <div class="gallery-item">
+    <img src="assets/images/光芒下的奖牌.jpg" alt="光芒下的奖牌" />
+    <div class="gallery-caption">
+      <h3>光芒下的奖牌</h3>
+      <p>奖牌在光下闪着，但那光不只属于获奖的人。每一个在背后默默付出的日子，都在此刻有了重量。</p>
+    </div>
+  </div>
+
+  <div class="gallery-item">
+    <img src="assets/images/运动会上的奶龙.jpg" alt="运动会上的奶龙" />
+    <div class="gallery-caption">
+      <h3>运动会上的奶龙</h3>
+      <p>那是我们最肆无忌惮的一天。笑声、呐喊、摔倒在草坪上——那些画面，比任何成绩都更值得被记住。</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===== 留言板 ===== -->
+<div class="zone-dark">
+<section id="board">
+  <div class="section-title">留言板</div>
+
+  <div class="board-container" id="board-display"></div>
+
+  <div class="board-input-row">
+    <input type="text" id="msg-input" placeholder="写下你想说的话…" maxlength="100" />
+    <button id="msg-btn" title="发送留言">➤</button>
+  </div>
+</section>
+</div>
+
+<!-- ===== Modal ===== -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <h3>发送留言</h3>
+    <label for="m-name">你的姓名</label>
+    <input type="text" id="m-name" placeholder="请输入姓名" maxlength="20" />
+    <label for="m-relate">同学关系一句话证明</label>
+    <textarea id="m-relate" placeholder="例如：我们同桌三年，他借过我一半橡皮"></textarea>
+    <div class="modal-btns">
+      <button id="modal-cancel">取消</button>
+      <button id="modal-send" class="primary">发送</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 回忆终端 ===== -->
+<div class="zone-darkest">
+<section id="terminal">
+  <div class="section-title">回忆终端</div>
+  <div class="terminal-shell-wrapper">
+    <div class="terminal-shell">
+      <div id="term"></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===== 致谢 ===== -->
+<div class="zone-darker">
+<section id="thanks">
+  <div class="section-title">致谢</div>
+  <p class="thanks-intro">以下这些同学于我在校期间提供了许多帮助，经过同意公开如下：</p>
+
+  <ol class="thanks-list">
+    <li>■ ■</li>
+    <li>■ ■ ■</li>
+    <li>■ ■ ■</li>
+    <li>■ ■ ■</li>
+    <li>■ ■ ■</li>
+    <li>■ ■ ■</li>
+    <li>■ ■ ■</li>
+  </ol>
+
+  <p class="thanks-note">
+    同时感谢每一位帮助我的、不帮助我的同学，欺侮我的、不欺侮我的同学，
+    接纳我的、不接纳我的同学，你们都让我看到了生命的一种可能。谢谢！
+  </p>
+</section>
+</div>
+
+<!-- ===== 箴言 ===== -->
+<div class="zone-darkest">
+<div class="quote-section" id="quote-section">
+  <div class="random-quote" id="random-quote"></div>
+</div>
+</div>
+
+<footer>
+  nondev10 &copy; 2026 — 愿此间一切，皆成序章。
+</footer>
+
+<!-- Scripts — order matters: countdown → board → terminal → quotes -->
+<script src="js/countdown.js"></script>
+<script src="js/board.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/quotes.js"></script>
+
+</body>
 </html>
