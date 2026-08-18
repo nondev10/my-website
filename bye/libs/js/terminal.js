@@ -30,7 +30,6 @@ const term = new Terminal({
     brightWhite:   '#f2f2f2',
   },
   allowProposedApi: true,
-  disableStdin: true,
 });
 term.loadAddon(fitAddon);
 term.open(termContainer);
@@ -40,6 +39,10 @@ function fitTerminal() {
 }
 fitTerminal();
 window.addEventListener('resize', fitTerminal);
+
+// Focus terminal on click so keyboard input works immediately
+termContainer.addEventListener('click', () => term.focus());
+term.focus();
 
 // Command history + current line tracker
 const cmdHistory = [];

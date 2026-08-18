@@ -10,12 +10,12 @@ const modalCancel  = document.getElementById('modal-cancel');
 const modalSend    = document.getElementById('modal-send');
 
 const defaultMessages = [
-  '再见了，我的初中时代。',
-  '愿我们都能在各自的轨道上闪闪发光。',
-  '谢谢你，陪我走过这段路。',
-  '下次见面，希望我们都能成为更好的人。',
-  '青春不散场。',
-  '记得常联系。',
+  '再见了，我的初中时代。（示例）',
+  '愿我们都能在各自的轨道上闪闪发光。（示例）',
+  '谢谢你，陪我走过这段路。（示例）',
+  '下次见面，希望我们都能成为更好的人。（示例）',
+  '青春不散场。（示例）',
+  '记得常联系。（示例）',
 ];
 
 function spawnBullet(text) {
