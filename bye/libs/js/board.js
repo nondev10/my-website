@@ -8,6 +8,7 @@ const mName        = document.getElementById('m-name');
 const mRelate      = document.getElementById('m-relate');
 const modalCancel  = document.getElementById('modal-cancel');
 const modalSend    = document.getElementById('modal-send');
+const mBody        = document.getElementById('msg-input');
 
 const defaultMessages = [
   '再见了，我的初中时代。（示例）',
@@ -41,11 +42,12 @@ modalOverlay.addEventListener('click', e => {
 });
 modalSend.addEventListener('click', () => {
   const name = mName.value.trim();
+  const message = mBody.value.trim();
   const relate = mRelate.value.trim();
   if (!name || !relate) { alert('请填写姓名和同学关系证明'); return; }
   spawnBullet(`${name}：${relate}`);
-  const subject = encodeURIComponent('[留言]');
-  const body = encodeURIComponent(`[留言]\n——${name}\n\n"${relate}"`);
+  const subject = encodeURIComponent(`[Leave a message] ${name} To 黄拾皓`);
+  const body = encodeURIComponent(`${}\n——${name}\n\n"${relate}"`);
   window.location.href = `mailto:talk@shihao.com?subject=${subject}&body=${body}`;
   mName.value = '';
   mRelate.value = '';
