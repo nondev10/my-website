@@ -323,19 +323,41 @@ section {
   counter-increment: thanks-counter;
   display: flex;
   align-items: center;
+  gap: 12px;
   padding: 10px 16px;
   border-bottom: 1px solid #2a2a2a;
-  font-size: 1rem;
-  color: #ccc;
   transition: background 0.15s;
 }
 .thanks-list li::before {
   content: counter(thanks-counter, decimal-leading-zero) ".";
-  margin-right: 16px;
   color: #888;
   font-family: "Courier New", monospace;
-  min-width: 32px;
+  min-width: 28px;
   text-align: right;
+  flex: 0 0 auto;
+}
+.thanks-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex: 1;
+  min-width: 0;
+  color: #ccc;
+  font-size: 1rem;
+}
+.thanks-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.thanks-remark {
+  flex: 0 0 auto;
+  color: #888;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  text-align: right;
+  font-style: italic;
+  white-space: nowrap;
 }
 .thanks-list li:hover { background: #222; }
 .thanks-note {
@@ -390,10 +412,35 @@ footer {
    Responsive
    ============================================================ */
 @media (max-width: 700px) {
+  .countdown-banner {
+    margin-top: 41px;
+    padding: 20px 14px;
+  }
+  .countdown-label {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+  }
+  .countdown-big {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+  }
+  .countdown-big .num {
+    display: inline-block;
+    min-width: 1.2em;
+  }
+  .countdown-big .unit {
+    font-size: 0.72rem;
+    margin: 0;
+  }
   .gallery-item, .gallery-item:nth-child(even) { flex-direction: column; }
   .gallery-item img { width: 100%; height: auto; }
   .nav { flex-wrap: wrap; }
   .nav a { padding: 10px 14px; font-size: 0.7rem; }
-  .countdown-big { font-size: 1.6rem; }
   .random-quote { font-size: 1.4rem; }
 }
