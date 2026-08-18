@@ -47,7 +47,7 @@ modalSend.addEventListener('click', () => {
   if (!name || !relate) { alert('请填写姓名和同学关系证明'); return; }
   spawnBullet(`${name}：${relate}`);
   const subject = encodeURIComponent(`[Leave a message] ${name} To 黄拾皓`);
-  const body = encodeURIComponent(`${}\n——${name}\n\n"${relate}"`);
+  const body = encodeURIComponent(`${message}\n——${name}\n\n"${relate}"`);
   window.location.href = `mailto:talk@shihao.com?subject=${subject}&body=${body}`;
   mName.value = '';
   mRelate.value = '';
