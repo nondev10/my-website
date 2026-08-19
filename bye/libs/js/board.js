@@ -20,6 +20,7 @@ const defaultMessages = [
 ];
 
 function spawnBullet(text) {
+  if (!boardEl) return;
   const el = document.createElement('div');
   el.className = 'bullet';
   el.textContent = text;
@@ -31,25 +32,38 @@ function spawnBullet(text) {
   el.addEventListener('animationend', () => el.remove());
 }
 
-defaultMessages.forEach((msg, i) => {
-  setTimeout(() => spawnBullet(msg), i * 1800);
-});
+function initBoard() {
+  if (!boardEl || !msgBtn || !modalOverlay || !modalCancel || !modalSend || !mName || !mRelate || !mBody) {
+    console.warn('Board elements missing; initialization skipped.');
+    return;
+  }
 
-msgBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
-modalCancel.addEventListener('click', () => modalOverlay.classList.remove('active'));
-modalOverlay.addEventListener('click', e => {
-  if (e.target === modalOverlay) modalOverlay.classList.remove('active');
-});
-modalSend.addEventListener('click', () => {
-  const name = mName.value.trim();
-  const message = mBody.value.trim();
-  const relate = mRelate.value.trim();
-  if (!name || !relate) { alert('请填写姓名和同学关系证明'); return; }
-  spawnBullet(`${name}：${relate}`);
-  const subject = encodeURIComponent(`[Leave a message] ${name} To 黄拾皓`);
-  const body = encodeURIComponent(`${message}\n——${name}\n\n"${relate}"`);
-  window.location.href = `mailto:talk@shihao.com?subject=${subject}&body=${body}`;
-  mName.value = '';
-  mRelate.value = '';
-  modalOverlay.classList.remove('active');
-});
+  defaultMessages.forEach((msg, i) => {
+    setTimeout(() => spawnBullet(msg), i * 1800);
+  });
+
+  msgBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
+  modalCancel.addEventListener('click', () => modalOverlay.classList.remove('active'));
+  modalOverlay.addEventListener('click', e => {
+    if (e.target === modalOverlay) modalOverlay.classList.remove('active');
+  });
+  modalSend.addEventListener('click', () => {
+    const name = mName.value.trim();
+    const message = mBody.value.trim();
+    const relate = mRelate.value.trim();
+    if (!name || !relate) { alert('请填写姓名和同学关系证明'); return; }
+    spawnBullet(`${name}：${relate}`);
+    const subject = encodeURIComponent(`[Leave a message] ${name} To 黄拾皓`);
+    const body = encodeURIComponent(`${message}\n——${name}\n\n"${relate}"`);
+    window.location.href = `mailto:talk@shihao.com?subject=${subject}&body=${body}`;
+    mName.value = '';
+    mRelate.value = '';
+    modalOverlay.classList.remove('active');
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initBoard, { once: true });
+} else {
+  initBoard();
+}
