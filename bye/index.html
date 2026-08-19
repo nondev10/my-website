@@ -9,32 +9,22 @@
   <title>Farewell · All of the Past</title>
 
   <script>
-    (function () {
-      const now = new Date();
-      const y = now.getFullYear();
-      const m = String(now.getMonth() + 1).padStart(2, '0');
-      const d = String(now.getDate()).padStart(2, '0');
-      window.ASSET_VERSION = y + '-' + m + '-' + d;
-      window.assetUrl = function (path) {
-        return path + (path.includes('?') ? '&' : '?') + 'v=' + window.ASSET_VERSION;
-      };
-    })();
+    window.ASSET_VERSION = Data.now();
+    window.assetUrl = function (path) {
+      return path + (path.includes('?') ? '&' : '?') + 'v=' + window.ASSET_VERSION;
+    };
   </script>
 
-  <script>
-    document.write('<link rel="stylesheet" href="' + window.assetUrl('https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css') + '" />');
-    document.write('<script src="' + window.assetUrl('https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js') + '"><\/script>');
-    document.write('<script src="' + window.assetUrl('https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js') + '"><\/script>');
-    document.write('<link rel="stylesheet" href="' + window.assetUrl('libs/css/style.css') + '" />');
-  </script>
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css?v=2026-08-19" />
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js?v=2026-08-19"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js?v=2026-08-19"></script>
+  <link rel="stylesheet" href="libs/css/style.css?v=2026-08-19" />
+
   <!-- Scripts — order matters: countdown → board → terminal → quotes -->
-  <script>
-    document.write('<script src="' + window.assetUrl('libs/js/countdown.js') + '"><\/script>');
-    document.write('<script src="' + window.assetUrl('libs/js/board.js') + '"><\/script>');
-    document.write('<script src="' + window.assetUrl('libs/js/terminal.js') + '"><\/script>');
-    document.write('<script src="' + window.assetUrl('libs/js/quotes.js') + '"><\/script>');
-  </script>
+  <script src="libs/js/countdown.js?v=2026-08-19"></script>
+  <script src="libs/js/board.js?v=2026-08-19"></script>
+  <script src="libs/js/terminal.js?v=2026-08-19"></script>
+  <script src="libs/js/quotes.js?v=2026-08-19"></script>
 </head>
 <body>
 
@@ -201,7 +191,7 @@
     </li>
     <li>
       <div class="thanks-row">
-        <span class="thanks-name">■ ■ ■（已尝试联系）</span>
+        <span class="thanks-name">风</span>
         <span class="thanks-remark">最佳陪伴奖</span>
       </div>
     </li>
