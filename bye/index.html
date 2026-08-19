@@ -8,13 +8,33 @@
   <meta http-equiv="Expires" content="0" />
   <title>Farewell · All of the Past</title>
 
-  <!-- xterm.js for real terminal emulation -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css?v=2026-08-18" />
-  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js?v=2026-08-18"></script>
-  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js?v=2026-08-18"></script>
+  <script>
+    (function () {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      window.ASSET_VERSION = y + '-' + m + '-' + d;
+      window.assetUrl = function (path) {
+        return path + (path.includes('?') ? '&' : '?') + 'v=' + window.ASSET_VERSION;
+      };
+    })();
+  </script>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="libs/css/style.css?v=2026-08-18" />
+  <script>
+    document.write('<link rel="stylesheet" href="' + window.assetUrl('https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css') + '" />');
+    document.write('<script src="' + window.assetUrl('https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js') + '"><\/script>');
+    document.write('<script src="' + window.assetUrl('https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js') + '"><\/script>');
+    document.write('<link rel="stylesheet" href="' + window.assetUrl('libs/css/style.css') + '" />');
+  </script>
+  
+  <!-- Scripts — order matters: countdown → board → terminal → quotes -->
+  <script>
+    document.write('<script src="' + window.assetUrl('libs/js/countdown.js') + '"><\/script>');
+    document.write('<script src="' + window.assetUrl('libs/js/board.js') + '"><\/script>');
+    document.write('<script src="' + window.assetUrl('libs/js/terminal.js') + '"><\/script>');
+    document.write('<script src="' + window.assetUrl('libs/js/quotes.js') + '"><\/script>');
+  </script>
 </head>
 <body>
 
@@ -223,12 +243,6 @@
 <footer>
   Shihao &copy; 2026 — Ade, Meine Teenager!
 </footer>
-
-<!-- Scripts — order matters: countdown → board → terminal → quotes -->
-<script src="libs/js/countdown.js?v=2026-08-18"></script>
-<script src="libs/js/board.js?v=2026-08-18"></script>
-<script src="libs/js/terminal.js?v=2026-08-18"></script>
-<script src="libs/js/quotes.js?v=2026-08-18"></script>
 
 </body>
 </html>

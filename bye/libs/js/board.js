@@ -38,6 +38,9 @@ function initBoard() {
     return;
   }
 
+  if (boardEl.dataset.ready === 'true') return;
+  boardEl.dataset.ready = 'true';
+
   defaultMessages.forEach((msg, i) => {
     setTimeout(() => spawnBullet(msg), i * 1800);
   });
@@ -52,8 +55,8 @@ function initBoard() {
     const message = mBody.value.trim();
     const relate = mRelate.value.trim();
     if (!name || !relate) { alert('请填写姓名和同学关系证明'); return; }
-    spawnBullet(`${name}：${relate}`);
-    const subject = encodeURIComponent(`[Leave a message] ${name} To 黄拾皓`);
+    spawnBullet(`${name}：${message}`);
+    const subject = encodeURIComponent(`[Message] ${name} To 黄拾皓`);
     const body = encodeURIComponent(`${message}\n——${name}\n\n"${relate}"`);
     window.location.href = `mailto:talk@shihao.com?subject=${subject}&body=${body}`;
     mName.value = '';
